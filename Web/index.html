@@ -15,16 +15,24 @@
 
   <header class="site-header">
     <!-- Navbar do Bootstrap (uso exigido pela atividade) -->
-    <nav class="navbar navbar-expand" aria-label="Navegação principal">
+    <nav class="navbar navbar-expand-md" aria-label="Navegação principal">
       <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="img/LOGO_Voltrack.svg" alt="Voltrack" width="48" height="41"> Voltrack
         </a>
-        <ul class="navbar-nav ms-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menu" aria-controls="menu" aria-expanded="false"
+                aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="monitor.html">Meu monitor</a></li>
+            <li class="nav-item"><a class="nav-link" href="analise.html">Análise</a></li>
             <li class="nav-item"><a class="nav-link" href="sobre.html">Dicas e sobre</a></li>
           </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -110,7 +118,7 @@
         <ol class="passos">
           <li><strong>Cadastre</strong> os aparelhos, a potência e as horas de uso por dia.</li>
           <li><strong>Acompanhe</strong> o consumo em kWh e o custo estimado por mês.</li>
-          <li><strong>Edite ou remova</strong> itens e veja quanto você economiza ao mudar um hábito.</li>
+          <li><strong>Edite ou remova</strong> itens e use a página <strong>Análise</strong> para simular quanto você economiza ao mudar um hábito.</li>
         </ol>
       </div>
     </section>
@@ -123,5 +131,7 @@
       <p class="footer-nota">Este site usa apenas dados fictícios. Não informe dados pessoais reais.</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
