@@ -26,7 +26,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="menu">
-          <ul class="navbar-nav ms-auto">
+          <!-- Os itens de login/cadastro/sair são adicionados por js/nav.js -->
+          <ul class="navbar-nav ms-auto align-items-md-center" id="menu-lista">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="monitor.html">Meu monitor</a></li>
             <li class="nav-item"><a class="nav-link" href="analise.html">Análise</a></li>
@@ -44,7 +45,7 @@
         <div class="hero-text">
           <h1>Sua conta de luz tem uma história. Vamos entendê-la.</h1>
           <p class="lead">Cadastre os aparelhos da sua casa, veja quanto cada um consome por mês e descubra onde está o desperdício.</p>
-          <a class="btn btn-destaque" href="monitor.html">Começar meu monitor</a>
+          <a class="btn btn-destaque" href="cadastro.html">Começar agora</a>
         </div>
         <aside class="hero-dado" aria-label="Dado público">
           <p class="dado-numero">23,9 bilhões</p>
@@ -127,11 +128,30 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Voltrack · Projeto acadêmico de Tecnologia Cidadã · ODS 7: Energia limpa e acessível</p>
-      <p class="footer-nota">Este site usa apenas dados fictícios. Não informe dados pessoais reais.</p>
+      <div class="footer-main">
+        <div class="footer-identidade">
+          <a class="footer-brand" href="index.html">
+            <img src="img/LOGO_Voltrack.svg" alt="" width="48" height="41">
+            <span>Voltrack</span>
+          </a>
+          <p class="footer-descricao">Tecnologia cidadã para acompanhar o consumo de energia.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Links do rodapé">
+          <a href="index.html">Início</a>
+          <a href="monitor.html">Meu monitor</a>
+          <a href="analise.html">Análise</a>
+          <a href="sobre.html">Dicas e sobre</a>
+        </nav>
+      </div>
+      <div class="footer-meta">
+        <p class="footer-nota">Projeto acadêmico · ODS 7: Energia limpa e acessível · Use apenas dados fictícios.</p>
+        <p class="footer-copy">© 2026 Voltrack. Todos os direitos reservados.</p>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/nav.js" defer></script>
 </body>
 </html>

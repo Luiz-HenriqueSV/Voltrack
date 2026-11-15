@@ -3,20 +3,20 @@
    Ordem: variáveis > base > componentes > media queries
    ========================================================= */
 
-/* ---------- 1. Variáveis (paleta azul + amarelo, confortável) ---------- */
+/* ---------- 1. Variáveis (paleta Voltrack) ---------- */
 :root {
-  --azul-escuro: #17375e;   /* textos de destaque, rodapé */
-  --azul: #2b6cb0;          /* cor principal */
-  --azul-claro: #e6f0fa;    /* fundos suaves */
-  --amarelo: #f5c542;       /* destaque / botões */
-  --amarelo-escuro: #e0ae22;
-  --amarelo-claro: #fff7dc; /* fundo de avisos */
-  --fundo: #f7f9fc;
-  --texto: #1f2a37;
-  --texto-suave: #4a5a6e;
-  --borda: #d5dfeb;
+  --azul-escuro: #123B3A;   /* verde petróleo */
+  --azul: #087F73;          /* verde esmeralda */
+  --azul-claro: #EAF4EF;    /* verde muito claro */
+  --amarelo: #F2C94C;       /* amarelo solar */
+  --amarelo-escuro: #43B89B;
+  --amarelo-claro: #EAF4EF;
+  --fundo: #EAF4EF;
+  --texto: #123B3A;
+  --texto-suave: #123B3A;
+  --borda: #43B89B;
   --erro: #b42318;
-  --sucesso: #1a7f4b;
+  --sucesso: #087F73;
   --raio: 10px;
 }
 
@@ -57,7 +57,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ---------- 3. Cabeçalho e navbar (Bootstrap personalizado) ---------- */
 .site-header { background: var(--azul-escuro); }
-.navbar .navbar-brand { color: #fff; font-weight: 700; }
+.navbar .navbar-brand { color: #FFFFFF; font-weight: 700; }
 .navbar .navbar-brand:hover { color: var(--amarelo); }
 .brand-mark { color: var(--amarelo); }
 .navbar-toggler { border-color: rgba(255,255,255,.5); }
@@ -65,8 +65,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-nav { gap: 0 .75rem; }
-.navbar .nav-link { color: #dce8f6; padding: .6rem .5rem; }
-.navbar .nav-link:hover { color: #fff; }
+.navbar .nav-link { color: #EAF4EF; padding: .6rem .5rem; }
+.navbar .nav-link:hover { color: #FFFFFF; }
 .navbar .nav-link.active {
   color: var(--amarelo);
   font-weight: 600;
@@ -84,14 +84,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .btn-destaque:hover { background: var(--amarelo-escuro); border-color: var(--amarelo-escuro); color: var(--azul-escuro); }
 
 .btn-secundario {
-  background: transparent;
-  color: var(--azul);
+  background: var(--azul);
+  color: #FFFFFF;
   border: 2px solid var(--azul);
   padding: .6rem 1.2rem;
   border-radius: var(--raio);
   font-weight: 600;
 }
-.btn-secundario:hover { background: var(--azul-claro); color: var(--azul-escuro); }
+.btn-secundario:hover { background: var(--azul-escuro); border-color: var(--azul-escuro); color: #FFFFFF; }
 
 /* ---------- 5. Página inicial ---------- */
 .hero { background: var(--azul-claro); padding: 2rem 0; }
@@ -109,7 +109,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .secao { padding: 2.5rem 0; }
 .secao-intro { color: var(--texto-suave); margin-bottom: 1.5rem; }
-.secao-passos { background: #fff; border-top: 1px solid var(--borda); }
+.secao-passos { background: #FFFFFF; border-top: 1px solid var(--borda); }
 
 .card-causa { border: 1px solid var(--borda); border-radius: var(--raio); border-top: 4px solid var(--azul); }
 .card-causa .card-title { color: var(--azul-escuro); }
@@ -125,12 +125,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .monitor-grid { display: grid; gap: 1.25rem; }
 
 .painel {
-  background: #fff;
+  background: #FFFFFF;
   border: 1px solid var(--borda);
   border-radius: var(--raio);
   padding: 1.25rem;
 }
-.painel-resumo { background: var(--azul-claro); border-color: #c5d9ee; }
+.painel-resumo { background: var(--azul-claro); border-color: var(--borda); }
 
 /* Formulário */
 .campo { margin-bottom: 1rem; }
@@ -141,9 +141,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 1rem;
   border: 2px solid var(--borda);
   border-radius: 8px;
-  background: #fff;
+  background: #FFFFFF;
   color: var(--texto);
 }
+.campo-check { display: flex; align-items: center; gap: .5rem; }
+.campo-check input[type="checkbox"] { width: 1rem; height: 1rem; flex: 0 0 auto; margin: 0; padding: 0; }
+.campo-check label { display: inline; margin: 0; }
 .campo input:focus, .campo select:focus { border-color: var(--azul); }
 .campo input.invalido, .campo select.invalido { border-color: var(--erro); }
 .campo-duplo { display: grid; gap: 0; }
@@ -185,11 +188,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .item-acoes { display: flex; gap: .5rem; }
 .item-acoes button {
   padding: .35rem .8rem; border-radius: 6px; font-size: .9rem; font-weight: 600; cursor: pointer;
-  border: 2px solid var(--azul); background: #fff; color: var(--azul);
+  border: 2px solid var(--azul); background: #FFFFFF; color: var(--azul);
 }
 .item-acoes button:hover { background: var(--azul-claro); }
 .item-acoes .btn-remover { border-color: var(--erro); color: var(--erro); }
-.item-acoes .btn-remover:hover { background: #fdecea; }
+.item-acoes .btn-remover:hover { background: var(--azul-claro); }
 
 .vazio { color: var(--texto-suave); font-style: italic; }
 .lista-aparelhos:not(:empty) + .vazio,
@@ -237,15 +240,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .secao-interna { margin-top: 2rem; }
 .dicas-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
 .dicas-grid li {
-  background: #fff; border: 1px solid var(--borda);
+  background: #FFFFFF; border: 1px solid var(--borda);
   border-left: 5px solid var(--amarelo);
   border-radius: 8px; padding: .75rem 1rem;
 }
 
 /* ---------- 8. Rodapé ---------- */
-.site-footer { background: var(--azul-escuro); color: #dce8f6; padding: 1.25rem 0; font-size: .9rem; }
-.site-footer p { margin: 0 0 .25rem; }
+.site-footer { background: var(--azul-escuro); color: #EAF4EF; padding: 1.75rem 0 1rem; font-size: .9rem; }
+.site-footer p { margin: 0; }
+.footer-main { display: grid; gap: 1.25rem; }
+.footer-brand { display: inline-flex; align-items: center; gap: .65rem; color: #FFFFFF; font-size: 1.1rem; font-weight: 700; text-decoration: none; }
+.footer-brand:hover { color: var(--amarelo); }
+.footer-brand img { display: block; width: 48px; height: 41px; object-fit: contain; }
+.footer-descricao { margin-top: .5rem !important; color: #EAF4EF; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: .4rem 1rem; }
+.footer-nav a { color: #EAF4EF; text-decoration: none; }
+.footer-nav a:hover { color: var(--amarelo); text-decoration: underline; }
+.footer-meta { display: grid; gap: .4rem; margin-top: 1.25rem; padding-top: .85rem; border-top: 1px solid rgba(234,244,239,.25); font-size: .82rem; }
 .footer-nota { color: var(--amarelo); }
+.footer-copy { color: #EAF4EF; }
 
 /* =========================================================
    Media queries (Mobile First: de baixo para cima)
@@ -256,6 +269,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (min-width: 768px) {
   h1 { font-size: 2.25rem; }
   h2 { font-size: 1.5rem; }
+
+  .footer-main { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .footer-nav { justify-content: flex-end; }
 
   .hero { padding: 3rem 0; }
   .hero-grid { grid-template-columns: 1.4fr 1fr; align-items: center; gap: 2rem; }

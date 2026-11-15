@@ -72,8 +72,39 @@
       typeof item.horas === 'number' && validarHoras(item.horas) === '';
   }
 
+  const PADRAO_USUARIO = /^[a-z0-9_]+$/;
+
+  function validarUsuario(valor) {
+    const usuario = String(valor).trim();
+    if (usuario === '') return 'Informe um nome de usuário.';
+    if (usuario.length < 3) return 'O nome de usuário deve ter pelo menos 3 caracteres.';
+    if (usuario.length > 20) return 'O nome de usuário deve ter no máximo 20 caracteres.';
+    if (!PADRAO_USUARIO.test(usuario)) return 'Use apenas letras minúsculas, números e _.';
+    return '';
+  }
+
+  function validarSenha(valor) {
+    const senha = String(valor);
+    if (senha === '') return 'Informe a senha.';
+    if (senha.length < 8) return 'A senha deve ter pelo menos 8 caracteres.';
+    if (senha.length > 64) return 'A senha deve ter no máximo 64 caracteres.';
+    if (!/[A-Za-z]/.test(senha) || !/\d/.test(senha)) return 'A senha deve ter letras e números.';
+    return '';
+  }
+
+  function validarConfirmacao(senha, confirmacao) {
+    if (confirmacao === '') return 'Repita a senha.';
+    if (senha !== confirmacao) return 'As senhas não são iguais.';
+    return '';
+  }
+
+  function validarAceite(marcado) {
+    return marcado ? '' : 'Aceite o aviso de privacidade para continuar.';
+  }
+
   V.validacao = {
     COMODOS, validarNome, validarComodo, validarNumero, validarPotencia,
-    validarHoras, validarTarifa, validarReducao, validarAparelho, aparelhoValido
+    validarHoras, validarTarifa, validarReducao, validarAparelho, aparelhoValido,
+    validarUsuario, validarSenha, validarConfirmacao, validarAceite
   };
 })(window.Voltrack = window.Voltrack || {});

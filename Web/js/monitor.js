@@ -270,6 +270,7 @@
   /* ---------- Início ---------- */
 
   function iniciar() {
+    if (!V.auth.exigirLogin()) return; // página só para usuários logados
     try {
       aparelhos = V.storage.carregarAparelhos();
       tarifa = V.storage.carregarTarifa();
