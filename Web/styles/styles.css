@@ -60,7 +60,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .navbar .navbar-brand { color: #fff; font-weight: 700; }
 .navbar .navbar-brand:hover { color: var(--amarelo); }
 .brand-mark { color: var(--amarelo); }
-.navbar-nav { flex-wrap: wrap; gap: 0 .75rem; }  /* menu sempre visível, sem JS */
+.navbar-toggler { border-color: rgba(255,255,255,.5); }
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-nav { gap: 0 .75rem; }
 .navbar .nav-link { color: #dce8f6; padding: .6rem .5rem; }
 .navbar .nav-link:hover { color: #fff; }
 .navbar .nav-link.active {
@@ -203,6 +207,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .log .log-ok { color: var(--sucesso); }
 .log .log-erro { color: var(--erro); }
 
+
+/* ---------- 6b. Itens da lista (criados pelo JS) ---------- */
+.item-texto { display: flex; flex-direction: column; }
+.item-info { overflow-wrap: anywhere; }
+.btn-remover { font-family: inherit; }
+
+/* ---------- 6c. Página de análise ---------- */
+.pagina-analise { padding-top: 2rem; padding-bottom: 2.5rem; }
+.analise-grid { display: grid; gap: 1.25rem; }
+
+.barras { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.linha-barra { display: grid; gap: .25rem; }
+.barra-rotulo { font-weight: 600; color: var(--azul-escuro); }
+.barra { display: block; height: 14px; background: var(--azul-claro); border-radius: 999px; overflow: hidden; }
+.barra-preenchimento { display: block; height: 100%; background: var(--amarelo); border-radius: 999px; min-width: 4px; }
+.barra-valor { font-size: .9rem; color: var(--texto-suave); }
+
+.top-lista { padding-left: 1.25rem; margin: 0; display: grid; gap: .6rem; }
+.top-lista li::marker { color: var(--azul); font-weight: 700; }
+
+.resultado-sim {
+  margin-top: 1.25rem; padding: 1rem;
+  background: var(--amarelo-claro); border-left: 6px solid var(--amarelo); border-radius: var(--raio);
+}
+.resultado-sim h3 { margin-top: 0; }
+
 /* ---------- 7. Página sobre ---------- */
 .secao-interna { margin-top: 2rem; }
 .dicas-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
@@ -238,6 +268,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
   .dicas-grid { grid-template-columns: 1fr 1fr; }
 
+  .analise-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .painel-sim { grid-column: 1 / -1; }
+  .linha-barra { grid-template-columns: 7rem 1fr; }
+  .barra-valor { grid-column: 2; }
+
   .lista-aparelhos li { flex-direction: row; align-items: center; justify-content: space-between; }
 }
 
@@ -252,5 +287,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .painel-log { grid-column: auto; }
 
   .dicas-grid { grid-template-columns: repeat(3, 1fr); }
+  .linha-barra { grid-template-columns: 8rem 1fr 11rem; }
+  .barra-valor { grid-column: auto; text-align: right; }
   .dado-numero { font-size: 2.5rem; }
 }

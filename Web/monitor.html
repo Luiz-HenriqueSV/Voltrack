@@ -13,16 +13,24 @@
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
   <header class="site-header">
-    <nav class="navbar navbar-expand" aria-label="Navegação principal">
+    <nav class="navbar navbar-expand-md" aria-label="Navegação principal">
       <div class="container">
         <a class="navbar-brand" href="index.html">
           <img src="img/LOGO_Voltrack.svg" alt="Voltrack" width="48" height="41"> Voltrack
         </a>
-        <ul class="navbar-nav ms-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menu" aria-controls="menu" aria-expanded="false"
+                aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="monitor.html">Meu monitor</a></li>
+            <li class="nav-item"><a class="nav-link" href="analise.html">Análise</a></li>
             <li class="nav-item"><a class="nav-link" href="sobre.html">Dicas e sobre</a></li>
           </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -38,7 +46,7 @@
       <section class="painel" aria-labelledby="titulo-form">
         <h2 id="titulo-form">Cadastrar aparelho</h2>
 
-        <form id="form-aparelho" autocomplete="off">
+        <form id="form-aparelho" autocomplete="off" novalidate>
           <!-- Guarda o id do item quando estiver editando (usado pelo JS) -->
           <input type="hidden" id="item-id" name="id">
 
@@ -141,5 +149,12 @@
       <p class="footer-nota">Este site usa apenas dados fictícios. Não informe dados pessoais reais.</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/validacao.js" defer></script>
+  <script src="js/calculos.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/log.js" defer></script>
+  <script src="js/monitor.js" defer></script>
 </body>
 </html>
