@@ -1,0 +1,256 @@
+/* =========================================================
+   Voltrack - Folha de estilo (Mobile First)
+   Ordem: variáveis > base > componentes > media queries
+   ========================================================= */
+
+/* ---------- 1. Variáveis (paleta azul + amarelo, confortável) ---------- */
+:root {
+  --azul-escuro: #17375e;   /* textos de destaque, rodapé */
+  --azul: #2b6cb0;          /* cor principal */
+  --azul-claro: #e6f0fa;    /* fundos suaves */
+  --amarelo: #f5c542;       /* destaque / botões */
+  --amarelo-escuro: #e0ae22;
+  --amarelo-claro: #fff7dc; /* fundo de avisos */
+  --fundo: #f7f9fc;
+  --texto: #1f2a37;
+  --texto-suave: #4a5a6e;
+  --borda: #d5dfeb;
+  --erro: #b42318;
+  --sucesso: #1a7f4b;
+  --raio: 10px;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fundo);
+  /* Rodapé sempre embaixo, mesmo em páginas curtas */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+
+h1, h2, h3 { color: var(--azul-escuro); line-height: 1.25; }
+h1 { font-size: 1.75rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.35rem; margin: 0 0 .75rem; }
+h3 { font-size: 1.1rem; }
+p { max-width: 70ch; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--amarelo-escuro);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--amarelo); color: var(--azul-escuro);
+  padding: .5rem 1rem; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- 3. Cabeçalho e navbar (Bootstrap personalizado) ---------- */
+.site-header { background: var(--azul-escuro); }
+.navbar .navbar-brand { color: #fff; font-weight: 700; }
+.navbar .navbar-brand:hover { color: var(--amarelo); }
+.brand-mark { color: var(--amarelo); }
+.navbar-nav { flex-wrap: wrap; gap: 0 .75rem; }  /* menu sempre visível, sem JS */
+.navbar .nav-link { color: #dce8f6; padding: .6rem .5rem; }
+.navbar .nav-link:hover { color: #fff; }
+.navbar .nav-link.active {
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+/* ---------- 4. Botões ---------- */
+.btn-destaque {
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+  font-weight: 600;
+  border: 2px solid var(--amarelo);
+  padding: .6rem 1.2rem;
+  border-radius: var(--raio);
+}
+.btn-destaque:hover { background: var(--amarelo-escuro); border-color: var(--amarelo-escuro); color: var(--azul-escuro); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--azul);
+  border: 2px solid var(--azul);
+  padding: .6rem 1.2rem;
+  border-radius: var(--raio);
+  font-weight: 600;
+}
+.btn-secundario:hover { background: var(--azul-claro); color: var(--azul-escuro); }
+
+/* ---------- 5. Página inicial ---------- */
+.hero { background: var(--azul-claro); padding: 2rem 0; }
+.hero-grid { display: grid; gap: 1.5rem; }
+.hero-text .lead { color: var(--texto-suave); }
+
+.hero-dado {
+  background: var(--amarelo-claro);
+  border-left: 6px solid var(--amarelo);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+.dado-numero { margin: 0; font-size: 2rem; font-weight: 700; color: var(--azul-escuro); }
+.dado-legenda { margin: .25rem 0 0; color: var(--texto-suave); }
+
+.secao { padding: 2.5rem 0; }
+.secao-intro { color: var(--texto-suave); margin-bottom: 1.5rem; }
+.secao-passos { background: #fff; border-top: 1px solid var(--borda); }
+
+.card-causa { border: 1px solid var(--borda); border-radius: var(--raio); border-top: 4px solid var(--azul); }
+.card-causa .card-title { color: var(--azul-escuro); }
+.card-causa .card-text { color: var(--texto-suave); }
+
+.passos { padding-left: 1.25rem; max-width: 60ch; }
+.passos li { margin-bottom: .5rem; }
+
+/* ---------- 6. Página do monitor ---------- */
+.pagina-monitor, .pagina-sobre { padding-top: 2rem; padding-bottom: 2.5rem; }
+
+/* Mobile: tudo em uma coluna */
+.monitor-grid { display: grid; gap: 1.25rem; }
+
+.painel {
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+.painel-resumo { background: var(--azul-claro); border-color: #c5d9ee; }
+
+/* Formulário */
+.campo { margin-bottom: 1rem; }
+.campo label { display: block; font-weight: 600; margin-bottom: .25rem; color: var(--azul-escuro); }
+.campo input, .campo select {
+  width: 100%;
+  padding: .6rem .75rem;
+  font-size: 1rem;
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texto);
+}
+.campo input:focus, .campo select:focus { border-color: var(--azul); }
+.campo input.invalido, .campo select.invalido { border-color: var(--erro); }
+.campo-duplo { display: grid; gap: 0; }
+
+.erro { color: var(--erro); font-size: .9rem; margin: .25rem 0 0; min-height: 0; }
+.erro:empty { display: none; }
+
+.aviso-privacidade {
+  background: var(--amarelo-claro);
+  border-left: 4px solid var(--amarelo);
+  padding: .6rem .8rem;
+  font-size: .9rem;
+  border-radius: 6px;
+  color: var(--texto-suave);
+}
+.acoes-form { display: flex; flex-wrap: wrap; gap: .6rem; }
+.mensagem-form { margin: .75rem 0 0; font-weight: 600; }
+.mensagem-form.sucesso { color: var(--sucesso); }
+.mensagem-form.falha { color: var(--erro); }
+.mensagem-form:empty { display: none; }
+
+/* Resumo */
+.resumo { display: grid; gap: .75rem; margin: 0 0 1rem; }
+.resumo dt { font-size: .9rem; color: var(--texto-suave); }
+.resumo dd { margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--azul-escuro); }
+.dica-tarifa { font-size: .85rem; color: var(--texto-suave); margin: 0; }
+
+/* Lista de aparelhos (itens criados pelo JS) */
+.lista-aparelhos { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.lista-aparelhos li {
+  display: flex; flex-direction: column; gap: .5rem;
+  border: 1px solid var(--borda);
+  border-left: 5px solid var(--amarelo);
+  border-radius: 8px;
+  padding: .75rem 1rem;
+}
+.item-nome { font-weight: 700; color: var(--azul-escuro); }
+.item-info { color: var(--texto-suave); font-size: .95rem; }
+.item-acoes { display: flex; gap: .5rem; }
+.item-acoes button {
+  padding: .35rem .8rem; border-radius: 6px; font-size: .9rem; font-weight: 600; cursor: pointer;
+  border: 2px solid var(--azul); background: #fff; color: var(--azul);
+}
+.item-acoes button:hover { background: var(--azul-claro); }
+.item-acoes .btn-remover { border-color: var(--erro); color: var(--erro); }
+.item-acoes .btn-remover:hover { background: #fdecea; }
+
+.vazio { color: var(--texto-suave); font-style: italic; }
+.lista-aparelhos:not(:empty) + .vazio,
+.log:not(:empty) + .vazio { display: none; } /* esconde a mensagem quando houver itens */
+
+/* Painel de registro de atividades */
+.log {
+  list-style: none; margin: 0; padding: 0;
+  max-height: 320px; overflow-y: auto;
+  font-size: .92rem;
+}
+.log li { padding: .45rem 0; border-bottom: 1px solid var(--borda); }
+.log li:last-child { border-bottom: 0; }
+.log .log-data { color: var(--azul); font-weight: 600; }
+.log .log-ok { color: var(--sucesso); }
+.log .log-erro { color: var(--erro); }
+
+/* ---------- 7. Página sobre ---------- */
+.secao-interna { margin-top: 2rem; }
+.dicas-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
+.dicas-grid li {
+  background: #fff; border: 1px solid var(--borda);
+  border-left: 5px solid var(--amarelo);
+  border-radius: 8px; padding: .75rem 1rem;
+}
+
+/* ---------- 8. Rodapé ---------- */
+.site-footer { background: var(--azul-escuro); color: #dce8f6; padding: 1.25rem 0; font-size: .9rem; }
+.site-footer p { margin: 0 0 .25rem; }
+.footer-nota { color: var(--amarelo); }
+
+/* =========================================================
+   Media queries (Mobile First: de baixo para cima)
+   Testar em: celular (~375px), tablet (~768px), desktop (~1200px)
+   ========================================================= */
+
+/* Tablet */
+@media (min-width: 768px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.5rem; }
+
+  .hero { padding: 3rem 0; }
+  .hero-grid { grid-template-columns: 1.4fr 1fr; align-items: center; gap: 2rem; }
+
+  .campo-duplo { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .resumo { grid-template-columns: repeat(3, 1fr); }
+
+  .monitor-grid { grid-template-columns: 1fr 1fr; }
+  .painel-resumo, .painel-lista { grid-column: 1 / -1; }
+
+  .dicas-grid { grid-template-columns: 1fr 1fr; }
+
+  .lista-aparelhos li { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+
+/* Desktop */
+@media (min-width: 1100px) {
+  h1 { font-size: 2.6rem; }
+
+  /* Formulário e resumo lado a lado; lista e log lado a lado */
+  .monitor-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+  .painel-resumo { grid-column: auto; }
+  .painel-lista { grid-column: auto; }
+  .painel-log { grid-column: auto; }
+
+  .dicas-grid { grid-template-columns: repeat(3, 1fr); }
+  .dado-numero { font-size: 2.5rem; }
+}
