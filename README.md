@@ -38,6 +38,8 @@ O Voltrack ajuda moradores a entender quais aparelhos pesam mais na conta de luz
 - **Registro de atividades** na tela, com data/hora, ação e resultado de cada operação.
 - **Validação em duas camadas:** atributos nativos do HTML5 e validação em JavaScript, com mensagens claras na tela.
 - **Layout responsivo**, pensado primeiro para celular (Mobile First).
+- **Página de análise:** consumo por cômodo, ranking dos 3 maiores consumidores e simulador de economia ("e se eu usar duas horas a menos?").
+- **Dados guardados no navegador** (`localStorage`): os aparelhos, a tarifa e o registro de atividades continuam ao recarregar a página.
 - Página com **dicas de economia**, explicação do ODS 7 e aviso de privacidade.
 
 **Cálculo do consumo:**
@@ -77,11 +79,17 @@ Também é possível abrir o `index.html` direto no navegador. O Bootstrap é ca
 voltrack/
 ├── index.html        # Página inicial: apresentação, causas do desperdício, como funciona
 ├── monitor.html      # Página principal: formulário, resumo, lista e registro de atividades
+├── analise.html      # Consumo por cômodo, ranking e simulador de economia
 ├── sobre.html        # Dicas de economia, sobre o projeto, ODS 7 e privacidade
 ├── css/
 │   └── style.css     # Estilos do site (Mobile First)
 ├── js/
-│   └── app.js        # Lógica: validação, adicionar, listar, editar, remover e log
+│   ├── validacao.js  # Regras de validação de toda entrada do usuário
+│   ├── calculos.js   # Fórmulas de consumo e formatação de números
+│   ├── storage.js    # Leitura e gravação no localStorage
+│   ├── log.js        # Painel de registro de atividades
+│   ├── monitor.js    # Página do monitor: adicionar, listar, editar e remover
+│   └── analise.js    # Página de análise: gráficos de barras, ranking e simulador
 ├── img/              # Prints das telas usados neste README
 └── README.md
 ```
@@ -112,17 +120,11 @@ Cada aparelho cadastrado é um objeto com os campos abaixo. O consumo e o custo 
 - **Larguras de tela:** layout verificado em celular (375 px), tablet (768 px) e desktop (1200 px).
 - **Entradas inválidas:** campos vazios, nome com 1 caractere ou acima de 40, potência zero, negativa ou acima de 10000, horas acima de 24, texto no lugar de número e tarifa inválida.
 - **Operações:** adicionar, listar, editar, cancelar edição e remover, conferindo se resumo e registro de atividades são atualizados a cada ação.
-- **Navegação:** links entre as 3 páginas e menu em todas elas.
+- **Navegação:** links entre as 4 páginas e menu (inclusive o botão de hambúrguer no celular) em todas elas.
+- **Persistência:** recarregar a página e conferir se aparelhos, tarifa e registro de atividades continuam lá.
+- **Dados adulterados:** alterar o `localStorage` à mão e conferir que itens inválidos são descartados.
+- **Simulador:** reduzir mais horas do que o aparelho usa, deixar campos vazios e não escolher aparelho.
 
-## Telas
-
-| Página inicial | Meu monitor | Dicas e sobre |
-|---|---|---|
-| ![Página inicial](img/home.png) | ![Meu monitor](img/monitor.png) | ![Dicas e sobre](img/sobre.png) |
-
-**Versão celular (375 px):**
-
-![Versão celular](img/monitor-mobile.png)
 
 ## Como o Voltrack se sustentaria como negócio de impacto
 

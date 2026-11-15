@@ -1,11 +1,145 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voltrack</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cadastre seus aparelhos e acompanhe o consumo estimado de energia elétrica.">
+  <title>Voltrack | Meu monitor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    
+
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header">
+    <nav class="navbar navbar-expand" aria-label="Navegação principal">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/LOGO_Voltrack.svg" alt="Voltrack" width="48" height="41"> Voltrack
+        </a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="monitor.html">Meu monitor</a></li>
+            <li class="nav-item"><a class="nav-link" href="sobre.html">Dicas e sobre</a></li>
+          </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="container pagina-monitor">
+
+    <h1>Meu monitor de energia</h1>
+    <p class="secao-intro">Cadastre um aparelho por vez. O consumo mensal é estimado com a fórmula: potência (W) × horas por dia × 30 dias ÷ 1000.</p>
+
+    <div class="monitor-grid">
+
+      <!-- Formulário principal: adicionar e editar -->
+      <section class="painel" aria-labelledby="titulo-form">
+        <h2 id="titulo-form">Cadastrar aparelho</h2>
+
+        <form id="form-aparelho" autocomplete="off">
+          <!-- Guarda o id do item quando estiver editando (usado pelo JS) -->
+          <input type="hidden" id="item-id" name="id">
+
+          <div class="campo">
+            <label for="nome">Nome do aparelho</label>
+            <input type="text" id="nome" name="nome" required minlength="2" maxlength="40"
+                   placeholder="Ex.: Geladeira">
+            <p class="erro" id="erro-nome" role="alert"></p>
+          </div>
+
+          <div class="campo">
+            <label for="comodo">Cômodo</label>
+            <select id="comodo" name="comodo" required>
+              <option value="">Selecione</option>
+              <option value="Cozinha">Cozinha</option>
+              <option value="Sala">Sala</option>
+              <option value="Quarto">Quarto</option>
+              <option value="Banheiro">Banheiro</option>
+              <option value="Área de serviço">Área de serviço</option>
+              <option value="Outro">Outro</option>
+            </select>
+            <p class="erro" id="erro-comodo" role="alert"></p>
+          </div>
+
+          <div class="campo-duplo">
+            <div class="campo">
+              <label for="potencia">Potência (W)</label>
+              <input type="number" id="potencia" name="potencia" required min="1" max="10000" step="1"
+                     inputmode="numeric" placeholder="Ex.: 150">
+              <p class="erro" id="erro-potencia" role="alert"></p>
+            </div>
+            <div class="campo">
+              <label for="horas">Horas de uso por dia</label>
+              <input type="number" id="horas" name="horas" required min="0.1" max="24" step="0.1"
+                     inputmode="decimal" placeholder="Ex.: 8">
+              <p class="erro" id="erro-horas" role="alert"></p>
+            </div>
+          </div>
+
+          <p class="aviso-privacidade">
+            <strong>Privacidade:</strong> pedimos apenas o necessário para calcular o consumo.
+            Use dados fictícios. Nada é enviado para fora do seu navegador.
+          </p>
+
+          <div class="acoes-form">
+            <button type="submit" class="btn btn-destaque" id="btn-salvar">Adicionar aparelho</button>
+            <button type="button" class="btn btn-secundario" id="btn-cancelar" hidden>Cancelar edição</button>
+          </div>
+
+          <!-- Mensagem geral de sucesso ou erro -->
+          <p class="mensagem-form" id="mensagem-form" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- Resumo do consumo -->
+      <section class="painel painel-resumo" aria-labelledby="titulo-resumo">
+        <h2 id="titulo-resumo">Resumo do mês</h2>
+        <dl class="resumo">
+          <div>
+            <dt>Aparelhos</dt>
+            <dd id="resumo-qtd">0</dd>
+          </div>
+          <div>
+            <dt>Consumo estimado</dt>
+            <dd><span id="resumo-kwh">0,00</span> kWh</dd>
+          </div>
+          <div>
+            <dt>Custo estimado</dt>
+            <dd>R$ <span id="resumo-custo">0,00</span></dd>
+          </div>
+        </dl>
+        <div class="campo">
+          <label for="tarifa">Tarifa (R$ por kWh)</label>
+          <input type="number" id="tarifa" name="tarifa" min="0.1" max="5" step="0.01" value="0.90" inputmode="decimal">
+          <p class="erro" id="erro-tarifa" role="alert"></p>
+        </div>
+        <p class="dica-tarifa">Confira o valor da tarifa na sua conta de luz.</p>
+      </section>
+
+      <!-- Lista dos aparelhos (listar, editar, remover) -->
+      <section class="painel painel-lista" aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista">Aparelhos cadastrados</h2>
+        <ul id="lista-aparelhos" class="lista-aparelhos" aria-live="polite"><!-- itens criados pelo JavaScript --></ul>
+        <p id="lista-vazia" class="vazio">Nenhum aparelho cadastrado ainda. Preencha o formulário para começar.</p>
+      </section>
+
+      <!-- Painel de registro de atividades -->
+      <section class="painel painel-log" aria-labelledby="titulo-log">
+        <h2 id="titulo-log">Registro de atividades</h2>
+        <ol id="log-atividades" class="log" aria-live="polite"><!-- registros criados pelo JavaScript --></ol>
+        <p id="log-vazio" class="vazio">Nenhuma atividade registrada ainda.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Voltrack · Projeto acadêmico de Tecnologia Cidadã · ODS 7: Energia limpa e acessível</p>
+      <p class="footer-nota">Este site usa apenas dados fictícios. Não informe dados pessoais reais.</p>
+    </div>
+  </footer>
 </body>
 </html>
