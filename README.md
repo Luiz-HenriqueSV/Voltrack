@@ -125,6 +125,24 @@ Cada aparelho cadastrado é um objeto com os campos abaixo. O consumo e o custo 
 - **Dados adulterados:** alterar o `localStorage` à mão e conferir que itens inválidos são descartados.
 - **Simulador:** reduzir mais horas do que o aparelho usa, deixar campos vazios e não escolher aparelho.
 
+## Telas
+
+| Página inicial | Meu monitor |
+|---|---|
+| ![Página inicial](img/home.png) | ![Meu monitor](img/monitor.png) |
+
+| Análise | Dicas e sobre |
+|---|---|
+| ![Análise](img/analise.png) | ![Dicas e sobre](img/sobre.png) |
+
+| Login | Cadastro |
+|---|---|
+| ![Login](img/login.png) | ![Cadastro](img/cadastro.png) |
+
+**Versão celular (375 px):**
+
+![Versão celular](img/monitor-mobile.png)
+
 
 ## Como o Voltrack se sustentaria como negócio de impacto
 
